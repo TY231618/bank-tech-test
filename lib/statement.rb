@@ -9,16 +9,27 @@ class Statement
 
   def deposit amount
     @balance += amount
-    @receipt << "DATE: #{Date.today.to_s} || DEPOSIT: #{amount} || BALANCE: #{@balance}"
+    add_deposit_to_receipt amount
   end
 
   def withdraw amount
     @balance -= amount
-    @receipt << "DATE: #{Date.today.to_s} || WITHDRAW: #{amount} || BALANCE: #{@balance}"
+    add_withdraw_to_receipt amount
   end
 
   def print_statement
-    # array = @receipt
     @receipt.reverse.map { |i| p i }
   end
+
+  private
+
+    def add_deposit_to_receipt amount
+      @receipt << "DATE: #{Date.today.to_s} || DEPOSIT: #{amount} || BALANCE: #{@balance}"
+      @receipt.join()
+    end
+
+    def add_withdraw_to_receipt amount
+      @receipt << "DATE: #{Date.today.to_s} || WITHDREW: #{amount} || BALANCE: #{@balance}"
+      @receipt.join()
+    end
 end

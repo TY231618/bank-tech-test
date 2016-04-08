@@ -21,7 +21,7 @@ describe Statement do
     end
 
     it 'adds info to receipt' do
-      expect(subject.deposit(100)).to eq ["DATE: #{Date.today.to_s} || DEPOSIT: 100 || BALANCE: 100"]
+      expect(subject.deposit(100)).to eq "DATE: #{Date.today.to_s} || DEPOSIT: 100 || BALANCE: 100"
     end
   end
 
@@ -34,7 +34,7 @@ describe Statement do
 
     it 'adds info to receipt' do
       subject.deposit(100)
-      expect(subject.withdraw(50)).to include "DATE: #{Date.today.to_s} || WITHDRAW: 50 || BALANCE: 50"
+      expect(subject.withdraw(50)).to include "DATE: #{Date.today.to_s} || WITHDREW: 50 || BALANCE: 50"
     end
   end
 
@@ -43,7 +43,7 @@ describe Statement do
       subject.deposit(100)
       subject.deposit(200)
       subject.withdraw(150)
-      expect(subject.print_statement).to eq ["DATE: #{Date.today.to_s} || WITHDRAW: 150 || BALANCE: 150",
+      expect(subject.print_statement).to eq ["DATE: #{Date.today.to_s} || WITHDREW: 150 || BALANCE: 150",
                                               "DATE: #{Date.today.to_s} || DEPOSIT: 200 || BALANCE: 300",
                                               "DATE: #{Date.today.to_s} || DEPOSIT: 100 || BALANCE: 100"]
     end
